@@ -1,86 +1,88 @@
 import UIKit
 
-// Задание выполнил Мишин Анатолий, студент ios-28
-// 13.02.2023
+// Домашнее задание по модулю 13.6 Множества выполнено учащимся Мишиным Анатолием iOS-28 27.01.2023
 
 
-// 1
-enum GachiError: Error {
-    case error400
-    case error404
-    case error500
-}
+// Задача №1
 
-var error400: Bool = false
-var error404: Bool = false
-var error500: Bool = false
+let dungeonMaster = (age: 69, sex: "male", gender: "master", name: "Иван Темный Холм")
+let fuckingSlave = (age: 18, sex: "female", gender: "slave", name: "Билли Херингтон")
 
-do {
-    if error400 {
-        throw GachiError.error400
-    }
-    if error404 {
-        throw GachiError.error404
-    }
-    if error500 {
-        throw GachiError.error500
-    }
+print(dungeonMaster.2)
+print(fuckingSlave.name)
+
+print("=========================")
+
+
+// Задача №2
+
+
+let countDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+print(countDays)
+
+print("=========================")
+
+let months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+
+
+for (index, value) in months.enumerated() {
+    print("В месяце \(value) \(countDays[index]) день/дней")
     
-} catch GachiError.error400 {
-    print("You are swallower (Bad Request)")
-} catch GachiError.error404 {
-    print("You are fucking slave (Not found)")
-} catch GachiError.error500 {
-    print("You are not dungeon master (Internal Server Error)")
 }
 
+print("=========================")
 
-// 2
+let arrayOfTuplesMounths = [("Январь", 31), ("Февраль", 28), ("Март", 31), ("Апрель", 30), ("Май", 31), ("Июнь", 30), ("Июль", 31), ("Август", 31), ("Сентябрь", 30), ("Октябрь", 31), ("Ноябрь", 30), ("Декабрь", 31)]
 
-func welcomeToDeepDarkFantasies() throws {
-        if error400 {
-            throw GachiError.error400
-        }
-        if error404 {
-            throw GachiError.error404
-        }
-        if error500 {
-            throw GachiError.error500
-        }
+for (index, value) in arrayOfTuplesMounths.enumerated() {
+    print("В месяце \(value.0) \(value.1) день/дней")
 }
 
-error404 = true
+print("=========================")
 
-do {
-    try welcomeToDeepDarkFantasies()
-    
-    } catch GachiError.error400 {
-        print("You are swallower (Bad Request)")
-    } catch GachiError.error404 {
-        print("You are fucking slave (Not found)")
-    } catch GachiError.error500 {
-        print("You are not dungeon master (Internal Server Error)")
+for (index, value) in arrayOfTuplesMounths.enumerated(){
+    print(arrayOfTuplesMounths[arrayOfTuplesMounths.count - (index + 1)])
+}
+           
+print("=========================")
+
+let daysInYear = 365
+let myBirthday = "31 октября"
+let dayOfMyBirthday = 365 - countDays[11] - countDays[10] //номер дня моего рождения в году
+print("Дней от моего Дня Рождения до следующего года: \(365 - dayOfMyBirthday)")
+
+print("=========================")
+
+
+// Задача №3
+
+
+var students = ["Anatoliy Mishin": 4, "Danila Swetz": 5, "Fucking Slave": 2, "Ivan Darkholm": 6, "Billy Harington": 4] // если что, у нас пятибальная система!!!
+print("За экзамен по ООП студент Anatoliy Mishin получил \(students["Anatoliy Mishin"]!) балла")
+students.updateValue(5, forKey: "Anatoliy Mishin")
+students
+print("После того, как Anatoliy Mishin позанимался ООП с Ivan Darkholm, то смог пересдать ООП и получить \(students["Anatoliy Mishin"]!) баллов")
+if students["Anatoliy Mishin"]! >= 3 {
+    print("Поздравляем с пересдачей на хорошую оценку!")
+} else if students["Anatoliy Mishin"]! <= 2 {
+        print("Иди чистить вилкой!")
     }
 
+students.updateValue(3, forKey: "Steve Rambo")
+students.updateValue(4, forKey: "Brad McGuire")
+students
 
-// 3
+students["Fucking Slave"] = nil
+students
 
-func genericsAreTrash<T, E>(a: T, b: E) -> String {
-    return T.self == E.self ? "Yes!Yes!Yes!Yes!" : "WREEEEEEE (no)"
+print("В группе \(students.count) студентов")
+
+for (student, grade) in students {
+    print("Студент \(student) за экзамен по ООП получил оценку \(grade)")
 }
 
-print(genericsAreTrash(a: "Van Darkholm", b: "Billy Harrington"))
-
-
-// 4 и 5 сделал в одном, решил поэкСПЕРМентировать, экСПЕРМменты == мои deep dark fantasies
-
-func genericsAreTrashPreSiquell<T, E>(a: T, b: E) throws -> String {
-    if T.self == E.self {
-        throw GachiError.error404
-    }
-    return "WREEEEEEEEEE!!! (no)"
-}
-
-print(try genericsAreTrashPreSiquell(a: "Brad McGuire", b: 69))
+print("Средний балл по группе составляет \((students["Anatoliy Mishin"]! + students["Danila Swetz"]! + students["Ivan Darkholm"]! + students["Billy Harington"]! + students["Steve Rambo"]! + students["Brad McGuire"]!) / students.count)")
+        
 
 
